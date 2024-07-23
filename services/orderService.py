@@ -53,14 +53,14 @@ def order_items(id):
         return None, {"Error": "Order does not exist"}
     return order.products, None
 
-def get_order_paginated(id, page, per_page):
-    query = select(Orders).filter(Orders.id == id)
+def get_order_paginated(page, per_page):
+    query = select(Orders)
     print("Query is ", query)
     order = db.paginate(query, page=page, per_page=per_page)
     if order is None:
         return None, {"Error": "Order does not exist"}
     # print(order.products)
-    return order.products, None
+    return order, None
     
 def order_tracking(id):
     query = select(Orders).filter(Orders.id == id)

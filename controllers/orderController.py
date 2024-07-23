@@ -24,11 +24,11 @@ def order_items(id):
         return jsonify(error), 400
     return products_schema.jsonify(products), 201
 
-def get_order_paginated(id):
+def get_order_paginated():
     page = int(request.args.get("page"))
     per_page = int(request.args.get("per_page"))
     print("Getting ORders, Page and PEr PAge", page, per_page)
-    products, error = orderService.get_order_paginated(id, page, per_page)
+    products, error = orderService.get_order_paginated( page, per_page)
     if error:
         return jsonify(error), 400
     return products_schema.jsonify(products), 201
